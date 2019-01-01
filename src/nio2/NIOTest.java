@@ -20,5 +20,16 @@ public class NIOTest {
         byte[] data = new byte[buf.limit()];
         buf.get(data,0,2);
         System.out.printf("capacity:%d,limit:%d,position:%d,data:%s\n",buf.capacity(),buf.limit(),buf.position(),new String(data));
+
+        //标记
+        buf.mark();
+        buf.get(data,2,3);
+        System.out.printf("capacity:%d,limit:%d,position:%d,data:%s\n",buf.capacity(),buf.limit(),buf.position(),new String(data));
+
+        //恢复到mark标记的位置
+        buf.reset();
+        System.out.printf("capacity:%d,limit:%d,position:%d,data:%s\n",buf.capacity(),buf.limit(),buf.position(),new String(data));
+
+
     }
 }
