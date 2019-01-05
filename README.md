@@ -17,3 +17,9 @@ java nio study
 
 8.阻塞式NIO（文件传输并返回传输结果）
 
+9.非阻塞式NIO(TCP)
+
+10.DatagramChannel(UDP) 
+
+11.piper
+
