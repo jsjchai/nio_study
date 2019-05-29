@@ -14,12 +14,9 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-       ctx.write(msg);
-    }
-
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.flush();
+        ByteBuf in = (ByteBuf) msg;
+        // 打印客户端输入，传输过来的的字符
+        System.out.println(in.toString(CharsetUtil.UTF_8));
     }
 
     @Override

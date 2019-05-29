@@ -1,13 +1,23 @@
 package com.github.jsjchai.echo;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.CharsetUtil;
+import java.util.Scanner;
 
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        super.channelRead(ctx, msg);
+        System.out.println("server channelRead... received:" + msg);
+        ctx.write(msg);
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception  {
+        System.out.println("server channelReadComplete..");
+        ctx.flush();
     }
 
     @Override

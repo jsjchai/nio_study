@@ -1,5 +1,6 @@
-package com.github.jsjchai.discrad;
+package com.github.jsjchai.echo;
 
+import com.github.jsjchai.discrad.DiscardServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -9,12 +10,12 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class DiscardServer {
+public class EchoServer {
 
     //端口
     private int port;
 
-    public DiscardServer(int port) {
+    public EchoServer(int port) {
         this.port = port;
     }
 
@@ -37,7 +38,7 @@ public class DiscardServer {
 
                 @Override
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
-                    socketChannel.pipeline().addLast(new DiscardServerHandler());
+                    socketChannel.pipeline().addLast(new EchoServerHandler());
                 }
             }).option(ChannelOption.SO_BACKLOG, 128)  //设置特定于Channel实现的参数
             .childOption(ChannelOption.SO_KEEPALIVE, true);//option()是提供给NioServerSocketChannel用来接收进来的连接, childOption()是提供给由父管道ServerChannel接收到的连接，
@@ -56,7 +57,7 @@ public class DiscardServer {
 
     public static void main(String[] args) throws InterruptedException {
         //telnet 127.0.0.1 10080 访问服务端
-        new DiscardServer(10080).run();
+        new EchoServer(10081).run();
     }
 
 }
